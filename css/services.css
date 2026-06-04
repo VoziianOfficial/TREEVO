@@ -508,3 +508,112 @@
     max-width: 820px;
     margin-inline: auto;
 }
+
+/* PROVIDER FACTORS — LIGHT SECTION, NO CARD BACKGROUNDS */
+
+.provider-factors {
+    color: var(--color-forest-black);
+    background:
+        radial-gradient(circle at 12% 8%, rgba(214, 170, 88, 0.12), transparent 32%),
+        radial-gradient(circle at 88% 14%, rgba(121, 185, 106, 0.07), transparent 34%),
+        linear-gradient(135deg, #F7EFE5 0%, #EFE0CD 48%, #E4D0B8 100%) !important;
+}
+
+/* heading */
+.provider-factors .section-heading h2 {
+    color: var(--color-forest-black) !important;
+}
+
+.provider-factors .section-heading p {
+    color: rgba(16, 16, 6, 0.72) !important;
+    font-weight: 600;
+}
+
+.provider-factors .section-kicker {
+    color: var(--color-leaf) !important;
+}
+
+.provider-factors .section-kicker::before,
+.provider-factors .section-kicker::after {
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent) !important;
+}
+
+/* cards/lines — NO background */
+.provider-factors .factor-line {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    color: var(--color-forest-black) !important;
+    border-color: rgba(16, 16, 6, 0.18) !important;
+}
+
+/* убирает все декоративные фоны, если они остались от прошлых вариантов */
+.provider-factors .factor-line::before,
+.provider-factors .factor-line::after {
+    background: none !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+/* text */
+.provider-factors .factor-line h3 {
+    color: #101006 !important;
+    font-weight: 900 !important;
+}
+
+.provider-factors .factor-line p {
+    color: rgba(16, 16, 6, 0.78) !important;
+    font-weight: 650 !important;
+}
+
+/* icons — no background */
+.provider-factors .factor-line__icon {
+    color: var(--color-leaf) !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+}
+
+.provider-factors .factor-line__icon svg {
+    color: currentColor !important;
+}
+
+/* hover — без фона, только цвет/бордер/иконка */
+.provider-factors .factor-line:hover {
+    background: transparent !important;
+    background-image: none !important;
+    border-color: rgba(214, 170, 88, 0.62) !important;
+}
+
+.provider-factors .factor-line:hover h3 {
+    color: var(--color-green-deep) !important;
+}
+
+.provider-factors .factor-line:hover p {
+    color: rgba(16, 16, 6, 0.86) !important;
+}
+
+.provider-factors .factor-line:hover .factor-line__icon {
+    color: var(--color-gold-dark) !important;
+}
+
+/* PROVIDER FACTORS — WIDER HEADING */
+
+.provider-factors .section-heading {
+    width: 100%;
+    max-width: 1040px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.provider-factors .section-heading h2 {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+}
+
+.provider-factors .section-heading p {
+    max-width: 860px;
+    margin-inline: auto;
+}
