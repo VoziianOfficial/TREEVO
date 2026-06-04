@@ -976,3 +976,324 @@
     color: var(--color-gold-light);
     transform: translateX(3px);
 }
+
+/* CONTACT FORM — COMPACT HEIGHT */
+
+.contact-form {
+    padding: 24px !important;
+    border-radius: 28px;
+}
+
+.contact-form__grid {
+    gap: 14px !important;
+}
+
+.form-field {
+    gap: 6px;
+}
+
+.form-field label {
+    margin-bottom: 2px;
+    font-size: 0.78rem;
+}
+
+.form-field input,
+.form-field select {
+    min-height: 44px !important;
+    padding: 10px 14px !important;
+    font-size: 0.92rem;
+}
+
+.form-field textarea {
+    min-height: 96px !important;
+    max-height: 130px;
+    padding: 12px 14px !important;
+    font-size: 0.92rem;
+    resize: vertical;
+}
+
+.form-field__error {
+    min-height: 0;
+    font-size: 0.72rem;
+}
+
+/* полностью убираем checks, если где-то остались в HTML */
+.contact-form__checks {
+    display: none !important;
+}
+
+/* пустые success/error не должны занимать место */
+.form-status:empty {
+    display: none !important;
+}
+
+.form-status {
+    margin-top: 10px;
+    padding: 10px 12px;
+}
+
+/* кнопки ближе к форме */
+.contact-form__actions {
+    margin-top: 16px !important;
+    gap: 10px;
+}
+
+.contact-form__actions .btn {
+    min-height: 44px;
+    padding: 12px 18px;
+}
+
+
+/* LOCATION SECTION — LIGHT, NO MAP */
+
+.location-section {
+    color: var(--color-forest-black);
+    background:
+        radial-gradient(circle at 12% 10%, rgba(214, 170, 88, 0.14), transparent 32%),
+        radial-gradient(circle at 88% 16%, rgba(121, 185, 106, 0.08), transparent 34%),
+        linear-gradient(135deg, #F7EFE5 0%, #EFE0CD 48%, #E4D0B8 100%) !important;
+}
+
+.location-card--no-map {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.85fr);
+    gap: 28px;
+    align-items: stretch;
+    padding: 34px;
+    border: 1px solid rgba(16, 16, 6, 0.12);
+    border-radius: 36px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(251, 247, 243, 0.34));
+    box-shadow: 0 22px 58px rgba(16, 16, 6, 0.1);
+}
+
+.location-card--no-map .section-kicker {
+    color: var(--color-leaf);
+}
+
+.location-card--no-map .section-kicker::before,
+.location-card--no-map .section-kicker::after {
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.location-card__content h2 {
+    margin: 0;
+    color: var(--color-forest-black);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 0.98;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+.location-card__content>p {
+    max-width: 640px;
+    margin: 18px 0 0;
+    color: rgba(16, 16, 6, 0.72);
+    font-weight: 600;
+}
+
+.location-card__details {
+    display: grid;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.location-card__detail {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    align-items: start;
+    color: rgba(16, 16, 6, 0.76);
+    font-weight: 700;
+}
+
+.location-card__detail i,
+.location-card__detail svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-leaf);
+}
+
+/* right info card */
+.location-card__info-panel {
+    display: grid;
+    align-content: center;
+    gap: 14px;
+    padding: 26px;
+    border: 1px solid rgba(16, 16, 6, 0.12);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(214, 170, 88, 0.14), transparent 34%),
+        linear-gradient(135deg, rgba(16, 16, 6, 0.96), rgba(46, 38, 23, 0.94));
+    box-shadow: 0 18px 44px rgba(16, 16, 6, 0.14);
+}
+
+.location-card__info-item {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 12px;
+    align-items: start;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(246, 228, 207, 0.12);
+    color: rgba(251, 247, 243, 0.78);
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+.location-card__info-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.location-card__info-item svg {
+    width: 22px;
+    height: 22px;
+    color: var(--color-gold-light);
+}
+
+/* hide old map if it remains somewhere */
+.location-card__map {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .location-card--no-map {
+        grid-template-columns: 1fr;
+        padding: 28px;
+        border-radius: 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    .location-card--no-map {
+        padding: 22px;
+        border-radius: 24px;
+    }
+
+    .location-card__content {
+        text-align: center;
+    }
+
+    .location-card__content>p {
+        margin-inline: auto;
+    }
+
+    .location-card__detail {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .location-card__info-panel {
+        padding: 22px;
+        border-radius: 24px;
+    }
+}
+
+/* CONTACT CTA — HORIZONTAL VERSION */
+
+.contact-clear-cta__layout {
+    display: block !important;
+}
+
+.contact-clear-cta__info-card {
+    display: none !important;
+}
+
+.contact-clear-cta__box--horizontal {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 34px;
+    padding: 34px 38px;
+}
+
+.contact-clear-cta__content {
+    max-width: 760px;
+}
+
+.contact-clear-cta__content h2 {
+    max-width: 760px;
+    margin: 0;
+}
+
+.contact-clear-cta__content>p:not(.section-kicker) {
+    max-width: 660px;
+    margin: 16px 0 0;
+}
+
+.contact-clear-cta__box--horizontal .contact-clear-cta__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 0;
+    min-width: 230px;
+}
+
+.contact-clear-cta__box--horizontal .btn {
+    width: 100%;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .contact-clear-cta__box--horizontal {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 24px;
+        padding: 30px 26px;
+    }
+
+    .contact-clear-cta__content {
+        max-width: 100%;
+    }
+
+    .contact-clear-cta__content h2,
+    .contact-clear-cta__content>p:not(.section-kicker) {
+        max-width: 100%;
+        margin-inline: auto;
+    }
+
+    .contact-clear-cta__box--horizontal .contact-clear-cta__actions {
+        width: 100%;
+        max-width: 520px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        min-width: 0;
+    }
+
+    .contact-clear-cta__box--horizontal .btn {
+        width: auto;
+        flex: 1 1 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .contact-clear-cta__box--horizontal {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+
+    .contact-clear-cta__box--horizontal .contact-clear-cta__actions {
+        overflow-x: auto;
+        justify-content: flex-start;
+        scrollbar-width: none;
+    }
+
+    .contact-clear-cta__box--horizontal .contact-clear-cta__actions::-webkit-scrollbar {
+        display: none;
+    }
+
+    .contact-clear-cta__box--horizontal .btn {
+        flex: 0 0 auto;
+        width: auto !important;
+        min-width: max-content;
+        padding-inline: 14px;
+        font-size: 0.66rem;
+    }
+}

@@ -617,25 +617,6 @@
                             </div>
                         </div>
 
-                        <div class="contact-form__checks">
-                            <label class="custom-check">
-                                <input type="checkbox" name="consent" required>
-                                <span class="custom-check__box" aria-hidden="true"></span>
-                                <span>
-                                    I agree to be contacted about my tree care provider comparison request.
-                                </span>
-                            </label>
-
-                            <label class="custom-check">
-                                <input type="checkbox" name="terms" required>
-                                <span class="custom-check__box" aria-hidden="true"></span>
-                                <span>
-                                    I understand TREEVO is an independent comparison platform and does not perform tree
-                                    care work directly. I agree to the
-                                    <a href="terms-of-service.html">Terms of Service</a>.
-                                </span>
-                            </label>
-                        </div>
 
                         <div class="form-status form-status--success" data-form-success aria-live="polite"></div>
                         <div class="form-status form-status--error" data-form-error aria-live="polite"></div>
@@ -655,72 +636,91 @@
             </div>
         </section>
 
-        <section class="section location-section" id="service-area" aria-labelledby="service-area-title">
-            <div class="container">
-                <div class="location-card">
-                    <div>
-                        <p class="section-kicker">Service area</p>
-                        <h2 id="service-area-title">A compact way to show provider comparison coverage.</h2>
-                        <p>
-                            TREEVO is built for homeowners comparing local tree care provider options across the USA.
-                            Availability may vary by location and provider.
-                        </p>
-
-                        <div class="location-card__details">
-                            <span class="location-card__detail">
-                                <i data-lucide="map-pin" aria-hidden="true"></i>
-                                <span data-config="company.address">123 Greenwood Drive, Austin, TX 78701, USA</span>
-                            </span>
-
-                            <span class="location-card__detail">
-                                <i data-lucide="globe-2" aria-hidden="true"></i>
-                                <span data-config="company.serviceArea">USA tree care provider comparison
-                                    platform</span>
-                            </span>
-
-                            <span class="location-card__detail">
-                                <i data-lucide="badge-check" aria-hidden="true"></i>
-                                <span>
-                                    Company ID:
-                                    <span data-config="company.companyId">TRV-TC-4827</span>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="location-card__map" aria-hidden="true">
-                        <span class="location-card__pin">
+    <section class="section location-section" id="service-area" aria-labelledby="service-area-title">
+        <div class="container">
+            <div class="location-card location-card--no-map">
+                <div class="location-card__content">
+                    <p class="section-kicker">Service area</p>
+    
+                    <h2 id="service-area-title">
+                        Compare tree care provider options by location.
+                    </h2>
+    
+                    <p>
+                        TREEVO helps homeowners organize tree care comparison requests across available local markets.
+                        Provider availability, response time, and service details may vary by ZIP code and project type.
+                    </p>
+    
+                    <div class="location-card__details">
+                        <span class="location-card__detail">
                             <i data-lucide="map-pin" aria-hidden="true"></i>
+                            <span data-config="company.address">123 Greenwood Drive, Austin, TX 78701, USA</span>
+                        </span>
+    
+                        <span class="location-card__detail">
+                            <i data-lucide="globe-2" aria-hidden="true"></i>
+                            <span data-config="company.serviceArea">USA tree care provider comparison platform</span>
+                        </span>
+    
+                        <span class="location-card__detail">
+                            <i data-lucide="badge-check" aria-hidden="true"></i>
+                            <span>
+                                Company ID:
+                                <span data-config="company.companyId">TRV-TC-4827</span>
+                            </span>
                         </span>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="section contact-clear-cta" id="quote" aria-labelledby="quote-title">
-            <div class="container">
-                <div class="contact-clear-cta__box">
-                    <p class="section-kicker">Clear the way</p>
-                    <h2 id="quote-title">Ready to compare tree care provider options?</h2>
-                    <p>
-                        Request local provider options for tree removal, trimming, stump grinding, land clearing, or
-                        urgent cleanup.
-                    </p>
-
-                    <div class="contact-clear-cta__actions">
-                        <a class="btn btn--primary" href="#contact-form" data-config="cta.primary">
-                            Get Free Estimate
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                        </a>
-
-                        <a class="btn btn--secondary" href="emergency-tree-removal.html" data-config="cta.emergency">
-                            Emergency Options
-                            <i data-lucide="siren" aria-hidden="true"></i>
-                        </a>
+    
+                <div class="location-card__info-panel" aria-label="Provider comparison coverage notes">
+                    <div class="location-card__info-item">
+                        <i data-lucide="search-check" aria-hidden="true"></i>
+                        <span>Compare local provider options by service category, urgency, and property access.</span>
+                    </div>
+    
+                    <div class="location-card__info-item">
+                        <i data-lucide="clock-3" aria-hidden="true"></i>
+                        <span>Response timing can depend on storm conditions, provider schedules, and location.</span>
+                    </div>
+    
+                    <div class="location-card__info-item">
+                        <i data-lucide="shield-check" aria-hidden="true"></i>
+                        <span>Ask providers about insurance, cleanup, equipment, and estimate details before
+                            choosing.</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+<section class="section contact-clear-cta" id="quote" aria-labelledby="quote-title">
+    <div class="container">
+        <div class="contact-clear-cta__box contact-clear-cta__box--horizontal">
+            <div class="contact-clear-cta__content">
+                <p class="section-kicker">Clear the way</p>
+
+                <h2 id="quote-title">Ready to compare tree care provider options?</h2>
+
+                <p>
+                    Request local provider options for tree removal, trimming, stump grinding, land clearing, or
+                    urgent cleanup.
+                </p>
+            </div>
+
+            <div class="contact-clear-cta__actions">
+                <a class="btn btn--primary" href="#contact-form" data-config="cta.primary">
+                    Get Free Estimate
+                    <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                </a>
+
+                <a class="btn btn--secondary" href="emergency-tree-removal.html" data-config="cta.emergency">
+                    Emergency Options
+                    <i data-lucide="siren" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
     </main>
 
     <footer class="site-footer" aria-label="Footer">
