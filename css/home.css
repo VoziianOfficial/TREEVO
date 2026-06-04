@@ -1456,3 +1456,77 @@
     padding-top: 8px;
     padding-bottom: 8px;
 }
+
+/* FINAL CTA — TEXT CARD + PHOTO CARD */
+
+.clear-cta__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);
+    gap: 26px;
+    align-items: stretch;
+}
+
+/* левая карточка больше не фиксируется сама по себе */
+.clear-cta__box {
+    width: 100%;
+    min-height: 100%;
+}
+
+/* правая фото-карточка такой же высоты, как левая */
+.clear-cta__photo-card {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(246, 228, 207, 0.18);
+    border-radius: 36px;
+    background: rgba(16, 16, 6, 0.32);
+    box-shadow: var(--shadow-card);
+}
+
+/* само фото */
+.clear-cta__photo {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(16, 16, 6, 0.06), rgba(16, 16, 6, 0.42)),
+        url("../assets/images/forest-cta.jpg") center / cover no-repeat;
+    transition: transform 0.65s var(--ease), filter 0.35s var(--ease);
+}
+
+/* мягкий shine */
+.clear-cta__photo-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.2) 45%, transparent 72%);
+    transform: translateX(-130%);
+    transition: transform 0.7s var(--ease);
+    pointer-events: none;
+}
+
+.clear-cta__photo-card:hover .clear-cta__photo {
+    transform: scale(1.045);
+    filter: saturate(1.08);
+}
+
+.clear-cta__photo-card:hover::after {
+    transform: translateX(130%);
+}
+
+/* tablet/mobile */
+@media (max-width: 900px) {
+    .clear-cta__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .clear-cta__photo-card {
+        min-height: 320px;
+        border-radius: 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    .clear-cta__photo-card {
+        min-height: 240px;
+    }
+}
