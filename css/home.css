@@ -1172,3 +1172,93 @@
         font-size: clamp(2rem, 11vw, 3.1rem);
     }
 }
+
+/* SERVICE CAROUSEL CONTROLS — SPLIT LEFT / RIGHT IN TOP AREA */
+
+.home-services .service-carousel__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+/* заголовок по центру на всю ширину */
+.home-services .service-carousel__top .section-heading {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* кнопки остаются вверху, но расходятся по краям */
+.home-services .service-carousel__controls {
+    position: static;
+    inset: auto;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    pointer-events: auto;
+}
+
+/* сами кнопки */
+.home-services .service-carousel__button,
+.home-services .service-carousel__button[data-carousel-prev],
+.home-services .service-carousel__button[data-carousel-next] {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(16, 16, 6, 0.14);
+    border-radius: 50%;
+    color: var(--color-forest-black);
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: 0 14px 34px rgba(16, 16, 6, 0.12);
+    transform: none;
+}
+
+.home-services .service-carousel__button:hover,
+.home-services .service-carousel__button[data-carousel-prev]:hover,
+.home-services .service-carousel__button[data-carousel-next]:hover {
+    color: var(--color-white);
+    border-color: rgba(79, 143, 77, 0.5);
+    background: var(--gradient-green);
+    box-shadow: 0 16px 38px rgba(79, 143, 77, 0.24);
+    transform: translateY(-2px);
+}
+
+.home-services .service-carousel__button svg {
+    width: 21px;
+    height: 21px;
+    stroke-width: 2.4;
+}
+
+@media (max-width: 560px) {
+    .home-services .service-carousel__controls {
+        padding-inline: 4px;
+    }
+
+    .home-services .service-carousel__button,
+    .home-services .service-carousel__button[data-carousel-prev],
+    .home-services .service-carousel__button[data-carousel-next] {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+.home-services .service-slide {
+    box-shadow: 0 10px 26px rgba(16, 16, 6, 0.06) !important;
+}
+
+.home-services .service-slide:hover,
+.home-services .service-slide.is-active {
+    box-shadow: 0 14px 36px rgba(16, 16, 6, 0.1) !important;
+}
