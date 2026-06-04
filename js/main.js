@@ -64,11 +64,16 @@
             const phoneDisplay = getConfigValue('contact.phoneDisplay');
             const phoneButtonText = getConfigValue('contact.phoneButtonText');
 
+            const isIconOnlyLink =
+                link.classList.contains('icon-button') ||
+                link.querySelector('[data-lucide]') ||
+                link.querySelector('svg');
+
             if (phoneRaw) {
                 link.setAttribute('href', `tel:${phoneRaw}`);
             }
 
-            if (!link.textContent.trim()) {
+            if (!isIconOnlyLink && !link.textContent.trim()) {
                 link.textContent = phoneDisplay || phoneButtonText || 'Call Now';
             }
 
@@ -78,19 +83,20 @@
         emailLinks.forEach((link) => {
             const email = getConfigValue('contact.email');
 
+            const isIconOnlyLink =
+                link.classList.contains('icon-button') ||
+                link.querySelector('[data-lucide]') ||
+                link.querySelector('svg');
+
             if (email) {
                 link.setAttribute('href', `mailto:${email}`);
             }
 
-            if (!link.textContent.trim()) {
+            if (!isIconOnlyLink && !link.textContent.trim()) {
                 link.textContent = email || 'Email TREEVO';
             }
 
             link.setAttribute('aria-label', `Email ${email || 'TREEVO'}`);
-        });
-
-        currentYearNodes.forEach((node) => {
-            node.textContent = new Date().getFullYear();
         });
     }
 
