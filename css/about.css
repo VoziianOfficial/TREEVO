@@ -287,7 +287,7 @@
 
 .problem-scanner__photo {
     position: relative;
-    min-height: 560px;
+    min-height: 760px;
     overflow: hidden;
     border: 1px solid rgba(246, 228, 207, 0.18);
     border-radius: 34px;
@@ -655,4 +655,161 @@
     .about-clear-cta__actions .btn {
         width: 100%;
     }
+}
+
+/* ABOUT CTA — TEXT CARD + SAME HEIGHT PHOTO CARD */
+
+.about-clear-cta__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);
+    gap: 26px;
+    align-items: stretch;
+}
+
+.about-clear-cta__box {
+    width: 100%;
+    min-height: 100%;
+}
+
+.about-clear-cta__photo-card {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(246, 228, 207, 0.18);
+    border-radius: 36px;
+    background: rgba(16, 16, 6, 0.32);
+    box-shadow: var(--shadow-card);
+}
+
+.about-clear-cta__photo {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(16, 16, 6, 0.04), rgba(16, 16, 6, 0.42)),
+        url("../assets/images/arborist-worker.jpg") center / cover no-repeat;
+    transition:
+        transform 0.65s var(--ease),
+        filter 0.35s var(--ease);
+}
+
+.about-clear-cta__photo-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.2) 45%, transparent 72%);
+    transform: translateX(-130%);
+    transition: transform 0.7s var(--ease);
+    pointer-events: none;
+}
+
+.about-clear-cta__photo-card:hover .about-clear-cta__photo {
+    transform: scale(1.045);
+    filter: saturate(1.08);
+}
+
+.about-clear-cta__photo-card:hover::after {
+    transform: translateX(130%);
+}
+
+@media (max-width: 900px) {
+    .about-clear-cta__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .about-clear-cta__photo-card {
+        min-height: 320px;
+        border-radius: 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    .about-clear-cta__photo-card {
+        min-height: 240px;
+    }
+}
+
+/* PROBLEM SCANNER — LIGHT WARM BACKGROUND */
+
+.problem-scanner {
+    color: var(--color-forest-black);
+    background:
+        radial-gradient(circle at 12% 10%, rgba(214, 170, 88, 0.16), transparent 32%),
+        radial-gradient(circle at 88% 16%, rgba(121, 185, 106, 0.08), transparent 34%),
+        linear-gradient(135deg, #F7EFE5 0%, #EFE0CD 48%, #E4D0B8 100%) !important;
+}
+
+/* text */
+.problem-scanner .section-kicker {
+    color: var(--color-leaf);
+}
+
+.problem-scanner .section-kicker::before,
+.problem-scanner .section-kicker::after {
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.problem-scanner h2 {
+    color: var(--color-forest-black);
+}
+
+.problem-scanner__content>p {
+    color: rgba(16, 16, 6, 0.72);
+    font-weight: 600;
+}
+
+/* rows */
+.problem-scanner .problem-list {
+    border-top-color: rgba(16, 16, 6, 0.16);
+}
+
+.problem-scanner .problem-row {
+    color: var(--color-forest-black);
+    border-bottom-color: rgba(16, 16, 6, 0.14);
+    background: transparent;
+}
+
+.problem-scanner .problem-row h3 {
+    color: #101006;
+    font-weight: 900;
+}
+
+.problem-scanner .problem-row__icon {
+    color: var(--color-leaf);
+    background: transparent !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+.problem-scanner .problem-row__icon svg {
+    color: currentColor;
+}
+
+.problem-scanner .problem-row__arrow {
+    color: var(--color-gold-dark);
+    background: transparent !important;
+}
+
+/* hover */
+.problem-scanner .problem-row:hover {
+    color: var(--color-green-deep);
+    border-bottom-color: rgba(214, 170, 88, 0.52);
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.problem-scanner .problem-row:hover h3 {
+    color: var(--color-green-deep);
+}
+
+.problem-scanner .problem-row:hover .problem-row__icon {
+    color: var(--color-gold-dark);
+}
+
+.problem-scanner .problem-row:hover .problem-row__arrow {
+    color: var(--color-leaf);
+}
+
+/* photo card stays rich on light background */
+.problem-scanner__photo {
+    box-shadow: 0 24px 64px rgba(16, 16, 6, 0.18);
+    border-color: rgba(16, 16, 6, 0.12);
 }
