@@ -1027,3 +1027,148 @@
 .home-hero__badge:hover {
     transform: translateY(-2px);
 }
+
+
+/* HOME SERVICES — LIGHT CONTRAST BACKGROUND */
+
+.home-services {
+    color: var(--color-forest-black);
+    background:
+        radial-gradient(circle at 12% 8%, rgba(214, 170, 88, 0.18), transparent 32%),
+        radial-gradient(circle at 88% 14%, rgba(121, 185, 106, 0.14), transparent 34%),
+        linear-gradient(135deg, #FFFFFF 0%, #FBF7F3 48%, #EDE2D3 100%) !important;
+}
+
+/* heading/text dark on light section */
+.home-services .section-heading {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.home-services .section-heading h2 {
+    color: var(--color-forest-black);
+}
+
+.home-services .section-heading p {
+    max-width: 780px;
+    margin-inline: auto;
+    color: rgba(16, 16, 6, 0.68);
+}
+
+.home-services .section-kicker {
+    color: var(--color-leaf);
+}
+
+.home-services .section-kicker::before,
+.home-services .section-kicker::after {
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+/* top row centered and full width */
+.home-services .service-carousel__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 22px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* arrows for light background */
+.home-services .service-carousel__controls {
+    justify-content: center;
+}
+
+.home-services .service-carousel__button {
+    color: var(--color-forest-black);
+    border-color: rgba(16, 16, 6, 0.14);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 16px 38px rgba(16, 16, 6, 0.12);
+}
+
+.home-services .service-carousel__button:hover {
+    color: var(--color-white);
+    border-color: rgba(79, 143, 77, 0.45);
+    background: var(--gradient-green);
+    box-shadow: 0 18px 42px rgba(79, 143, 77, 0.24);
+}
+
+/* dots for light background */
+.home-services .service-carousel__dot {
+    background: rgba(16, 16, 6, 0.18);
+}
+
+.home-services .service-carousel__dot.is-active {
+    background: var(--gradient-green);
+}
+
+/* extra space so card hover is not clipped */
+.home-services .service-carousel {
+    overflow: visible;
+}
+
+.home-services .service-carousel__viewport {
+    overflow: visible;
+    margin-inline: -18px;
+    padding-inline: 18px;
+}
+
+.home-services .service-carousel__track {
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 20px 18px 36px;
+    scroll-padding-left: 18px;
+    scroll-padding-right: 18px;
+}
+
+/* cards look better on light section */
+.home-services .service-slide {
+    border-color: rgba(16, 16, 6, 0.12);
+    box-shadow: 0 24px 70px rgba(16, 16, 6, 0.22);
+}
+
+.home-services .service-slide:hover,
+.home-services .service-slide.is-active {
+    border-color: rgba(214, 170, 88, 0.78);
+    box-shadow: 0 30px 86px rgba(16, 16, 6, 0.3);
+}
+
+/* mobile */
+@media (max-width: 820px) {
+    .home-services .service-carousel__top {
+        gap: 18px;
+    }
+
+    .home-services .service-carousel__viewport {
+        margin-inline: -12px;
+        padding-inline: 12px;
+    }
+
+    .home-services .service-carousel__track {
+        padding-inline: 12px;
+        scroll-padding-left: 12px;
+        scroll-padding-right: 12px;
+    }
+}
+
+/* HOME SERVICES TITLE — TWO LINES */
+
+.home-services__title {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+}
+
+.home-services__title span {
+    display: block;
+}
+
+@media (max-width: 560px) {
+    .home-services__title {
+        font-size: clamp(2rem, 11vw, 3.1rem);
+    }
+}
