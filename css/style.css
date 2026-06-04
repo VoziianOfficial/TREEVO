@@ -1648,3 +1648,11 @@ a {
     transition-duration: 0.001ms !important;
 }
 
+/* HERO SECTION SUBTLE BOTTOM CURVE */
+
+.hero,
+.page-hero {
+    overflow: hidden;
+    clip-path: ellipse(170% 100% at 50% 0%);
+}
+
