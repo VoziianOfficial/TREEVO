@@ -5,70 +5,193 @@
         const carousels = document.querySelectorAll('[data-service-carousel]');
 
         carousels.forEach((carousel) => {
+            if (carousel.dataset.loopReady === 'true') return;
+
             const track = carousel.querySelector('[data-carousel-track]');
-            const slides = Array.from(carousel.querySelectorAll('.service-slide'));
             const prevButton = carousel.querySelector('[data-carousel-prev]');
             const nextButton = carousel.querySelector('[data-carousel-next]');
             const dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
 
-            if (!track || !slides.length) return;
+            if (!track) return;
 
+            const originalSlides = Array.from(track.querySelectorAll('.service-slide'));
+
+            if (!originalSlides.length) return;
+
+            carousel.dataset.loopReady = 'true';
+
+            const slideCount = originalSlides.length;
             let activeIndex = 0;
             let scrollTimer = null;
+            let loopTimer = null;
+            let isJumping = false;
 
-            const getSlideStep = () => {
-                const firstSlide = slides[0];
-                const trackStyles = window.getComputedStyle(track);
-                const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || 0);
+            originalSlides.forEach((slide, index) => {
+                slide.dataset.originalIndex = String(index);
+                slide.dataset.slideType = 'original';
+            });
 
-                return firstSlide.offsetWidth + gap;
+            const createClone = (slide, index, type) => {
+                const clone = slide.cloneNode(true);
+
+                clone.classList.add('is-clone');
+                clone.classList.remove('is-active');
+                clone.dataset.originalIndex = String(index);
+                clone.dataset.slideType = type;
+                clone.setAttribute('aria-hidden', 'true');
+                clone.setAttribute('tabindex', '-1');
+
+                return clone;
+            };
+
+            const beforeClones = originalSlides.map((slide, index) =>
+                createClone(slide, index, 'before-clone')
+            );
+
+            const afterClones = originalSlides.map((slide, index) =>
+                createClone(slide, index, 'after-clone')
+            );
+
+            beforeClones.forEach((clone) => {
+                track.insertBefore(clone, originalSlides[0]);
+            });
+
+            afterClones.forEach((clone) => {
+                track.appendChild(clone);
+            });
+
+            const getAllSlides = () => Array.from(track.querySelectorAll('.service-slide'));
+
+            const getTrackPaddingLeft = () => {
+                return parseFloat(window.getComputedStyle(track).paddingLeft) || 0;
+            };
+
+            const getSlideLeft = (slide) => {
+                return slide.offsetLeft - getTrackPaddingLeft();
+            };
+
+            const getMiddleSlide = (index) => {
+                const allSlides = getAllSlides();
+
+                return allSlides[slideCount + index];
+            };
+
+            const scrollToSlideElement = (slide, behavior = 'smooth') => {
+                if (!slide) return;
+
+                track.scrollTo({
+                    left: getSlideLeft(slide),
+                    behavior
+                });
             };
 
             const setActiveSlide = (index) => {
-                activeIndex = Math.max(0, Math.min(index, slides.length - 1));
+                activeIndex = index;
 
-                slides.forEach((slide, slideIndex) => {
+                getAllSlides().forEach((slide) => {
+                    const slideIndex = Number(slide.dataset.originalIndex);
+
                     slide.classList.toggle('is-active', slideIndex === activeIndex);
                 });
 
                 dots.forEach((dot, dotIndex) => {
-                    dot.classList.toggle('is-active', dotIndex === activeIndex);
-                    dot.setAttribute('aria-current', dotIndex === activeIndex ? 'true' : 'false');
+                    const isActive = dotIndex === activeIndex;
+
+                    dot.classList.toggle('is-active', isActive);
+
+                    if (isActive) {
+                        dot.setAttribute('aria-current', 'true');
+                    } else {
+                        dot.removeAttribute('aria-current');
+                    }
                 });
             };
 
-            const scrollToSlide = (index) => {
-                const safeIndex = Math.max(0, Math.min(index, slides.length - 1));
-                const targetSlide = slides[safeIndex];
+            const jumpToMiddleSlide = (index) => {
+                const middleSlide = getMiddleSlide(index);
 
-                if (!targetSlide) return;
+                if (!middleSlide) return;
 
-                track.scrollTo({
-                    left: targetSlide.offsetLeft,
-                    behavior: 'smooth'
+                isJumping = true;
+                scrollToSlideElement(middleSlide, 'auto');
+
+                window.requestAnimationFrame(() => {
+                    isJumping = false;
                 });
-
-                setActiveSlide(safeIndex);
             };
 
-            const updateActiveFromScroll = () => {
-                const trackLeft = track.scrollLeft;
-                const step = getSlideStep();
+            const getClosestSlide = () => {
+                const allSlides = getAllSlides();
+                const currentLeft = track.scrollLeft + getTrackPaddingLeft();
 
-                if (!step) return;
+                return allSlides.reduce((closest, slide) => {
+                    const closestDistance = Math.abs(closest.offsetLeft - currentLeft);
+                    const slideDistance = Math.abs(slide.offsetLeft - currentLeft);
 
-                const index = Math.round(trackLeft / step);
+                    return slideDistance < closestDistance ? slide : closest;
+                }, allSlides[0]);
+            };
+
+            const checkLoopPosition = () => {
+                if (isJumping) return;
+
+                const closestSlide = getClosestSlide();
+
+                if (!closestSlide) return;
+
+                const closestIndex = Number(closestSlide.dataset.originalIndex);
+                const slideType = closestSlide.dataset.slideType;
+
+                if (Number.isNaN(closestIndex)) return;
+
+                setActiveSlide(closestIndex);
+
+                if (slideType === 'before-clone' || slideType === 'after-clone') {
+                    jumpToMiddleSlide(closestIndex);
+                }
+            };
+
+            const goToSlide = (index) => {
+                window.clearTimeout(loopTimer);
+
+                const allSlides = getAllSlides();
+
+                if (index > slideCount - 1) {
+                    const firstAfterClone = allSlides[slideCount * 2];
+
+                    setActiveSlide(0);
+                    scrollToSlideElement(firstAfterClone, 'smooth');
+
+                    loopTimer = window.setTimeout(() => {
+                        jumpToMiddleSlide(0);
+                    }, 430);
+
+                    return;
+                }
+
+                if (index < 0) {
+                    const lastBeforeClone = allSlides[slideCount - 1];
+
+                    setActiveSlide(slideCount - 1);
+                    scrollToSlideElement(lastBeforeClone, 'smooth');
+
+                    loopTimer = window.setTimeout(() => {
+                        jumpToMiddleSlide(slideCount - 1);
+                    }, 430);
+
+                    return;
+                }
+
                 setActiveSlide(index);
+                scrollToSlideElement(getMiddleSlide(index), 'smooth');
             };
 
             const goNext = () => {
-                const nextIndex = activeIndex >= slides.length - 1 ? 0 : activeIndex + 1;
-                scrollToSlide(nextIndex);
+                goToSlide(activeIndex + 1);
             };
 
             const goPrev = () => {
-                const prevIndex = activeIndex <= 0 ? slides.length - 1 : activeIndex - 1;
-                scrollToSlide(prevIndex);
+                goToSlide(activeIndex - 1);
             };
 
             if (nextButton) {
@@ -81,7 +204,7 @@
 
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
-                    scrollToSlide(index);
+                    goToSlide(index);
                 });
             });
 
@@ -91,8 +214,8 @@
                     window.clearTimeout(scrollTimer);
 
                     scrollTimer = window.setTimeout(() => {
-                        updateActiveFromScroll();
-                    }, 80);
+                        checkLoopPosition();
+                    }, 120);
                 },
                 { passive: true }
             );
@@ -109,25 +232,36 @@
                 }
             });
 
-            slides.forEach((slide, index) => {
-                slide.addEventListener('focus', () => {
-                    setActiveSlide(index);
+            getAllSlides().forEach((slide) => {
+                slide.addEventListener('mouseenter', () => {
+                    const index = Number(slide.dataset.originalIndex);
+
+                    if (!Number.isNaN(index)) {
+                        setActiveSlide(index);
+                    }
                 });
 
-                slide.addEventListener('mouseenter', () => {
-                    setActiveSlide(index);
+                slide.addEventListener('focus', () => {
+                    const index = Number(slide.dataset.originalIndex);
+
+                    if (!Number.isNaN(index)) {
+                        setActiveSlide(index);
+                    }
                 });
             });
 
             window.addEventListener(
                 'resize',
                 () => {
-                    scrollToSlide(activeIndex);
+                    jumpToMiddleSlide(activeIndex);
                 },
                 { passive: true }
             );
 
-            setActiveSlide(0);
+            window.requestAnimationFrame(() => {
+                jumpToMiddleSlide(0);
+                setActiveSlide(0);
+            });
         });
     }
 

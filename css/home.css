@@ -1308,3 +1308,7 @@
         clip-path: inset(0 round 24px);
     }
 }
+
+.service-slide.is-clone {
+    pointer-events: auto;
+}
