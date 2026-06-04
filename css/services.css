@@ -617,3 +617,74 @@
     max-width: 860px;
     margin-inline: auto;
 }
+
+/* SERVICES CTA — TEXT CARD + SAME HEIGHT PHOTO CARD */
+
+.services-clear-cta__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);
+    gap: 26px;
+    align-items: stretch;
+}
+
+.services-clear-cta__box {
+    width: 100%;
+    min-height: 100%;
+}
+
+.services-clear-cta__photo-card {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(246, 228, 207, 0.18);
+    border-radius: 36px;
+    background: rgba(16, 16, 6, 0.32);
+    box-shadow: var(--shadow-card);
+}
+
+.services-clear-cta__photo {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(16, 16, 6, 0.04), rgba(16, 16, 6, 0.42)),
+        url("../assets/images/arborist-worker.jpg") center / cover no-repeat;
+    transition:
+        transform 0.65s var(--ease),
+        filter 0.35s var(--ease);
+}
+
+.services-clear-cta__photo-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.2) 45%, transparent 72%);
+    transform: translateX(-130%);
+    transition: transform 0.7s var(--ease);
+    pointer-events: none;
+}
+
+.services-clear-cta__photo-card:hover .services-clear-cta__photo {
+    transform: scale(1.045);
+    filter: saturate(1.08);
+}
+
+.services-clear-cta__photo-card:hover::after {
+    transform: translateX(130%);
+}
+
+@media (max-width: 900px) {
+    .services-clear-cta__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .services-clear-cta__photo-card {
+        min-height: 320px;
+        border-radius: 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    .services-clear-cta__photo-card {
+        min-height: 240px;
+    }
+}
