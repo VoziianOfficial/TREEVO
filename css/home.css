@@ -1262,3 +1262,49 @@
 .home-services .service-slide.is-active {
     box-shadow: 0 14px 36px rgba(16, 16, 6, 0.1) !important;
 }
+
+/* FIX: service cards hover radius + no jumping */
+
+.home-services .service-slide,
+.home-services .service-slide:nth-child(even),
+.home-services .service-slide:nth-child(3n) {
+    border-radius: 28px !important;
+    overflow: hidden !important;
+    transform: translateY(0) rotate(0deg) scale(1) !important;
+    transform-origin: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    clip-path: inset(0 round 28px);
+}
+
+.home-services .service-slide:hover,
+.home-services .service-slide.is-active {
+    border-radius: 28px !important;
+    overflow: hidden !important;
+    transform: translateY(0) rotate(0deg) scale(1.015) !important;
+    clip-path: inset(0 round 28px);
+}
+
+/* чтобы фото и overlay тоже не вылезали за скругление */
+.home-services .service-slide__image,
+.home-services .service-slide::before,
+.home-services .service-slide::after {
+    border-radius: inherit !important;
+}
+
+.home-services .service-slide:hover .service-slide__image {
+    transform: scale(1.045);
+}
+
+@media (max-width: 560px) {
+
+    .home-services .service-slide,
+    .home-services .service-slide:nth-child(even),
+    .home-services .service-slide:nth-child(3n),
+    .home-services .service-slide:hover,
+    .home-services .service-slide.is-active {
+        border-radius: 24px !important;
+        clip-path: inset(0 round 24px);
+    }
+}
