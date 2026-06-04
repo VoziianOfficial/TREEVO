@@ -1312,3 +1312,71 @@
 .service-slide.is-clone {
     pointer-events: auto;
 }
+
+/* HOME HERO — CLEAN WHITE CONVEX BOTTOM */
+
+.home-hero {
+    position: relative;
+    overflow: hidden !important;
+    clip-path: none !important;
+}
+
+/* чистый белый вырез снизу, без отлива, без линии, без градиента */
+.home-hero::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: -1px !important;
+    z-index: 6 !important;
+    height: 86px !important;
+    pointer-events: none !important;
+
+    background: url("data:image/svg+xml,%3Csvg width='1440' height='86' viewBox='0 0 1440 86' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 34 C280 78 1160 78 1440 34 L1440 86 L0 86 Z' fill='%23FFFFFF'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    clip-path: none !important;
+}
+
+/* чтобы контент не оказался под белой маской */
+.home-hero .hero__inner {
+    position: relative;
+    z-index: 8;
+}
+
+/* следующая белая секция должна начинаться вплотную */
+.home-hero+.home-services {
+    margin-top: -1px;
+}
+
+/* HOME HERO — CLEAN CURVE WITH SAME BG AS NEXT SECTION */
+
+.home-hero::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: -1px !important;
+    z-index: 6 !important;
+    height: 86px !important;
+    pointer-events: none !important;
+
+    background:
+            radial-gradient(circle at 12% 8%, rgba(214, 170, 88, 0.18), transparent 32%),
+            radial-gradient(circle at 88% 14%, rgba(121, 185, 106, 0.08), transparent 34%),
+            linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(253, 250, 246) 48%, rgb(247, 239, 229) 100%) !important;
+    -webkit-mask:
+        url("data:image/svg+xml,%3Csvg width='1440' height='86' viewBox='0 0 1440 86' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 34 C280 78 1160 78 1440 34 L1440 86 L0 86 Z' fill='black'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat;
+
+    mask:
+        url("data:image/svg+xml,%3Csvg width='1440' height='86' viewBox='0 0 1440 86' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 34 C280 78 1160 78 1440 34 L1440 86 L0 86 Z' fill='black'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    clip-path: none !important;
+}
