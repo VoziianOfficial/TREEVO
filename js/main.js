@@ -36,6 +36,21 @@
         }, CONFIG);
     }
 
+    function isIconOnlyElement(element) {
+        if (!element) return false;
+
+        const hasIconClass = element.classList.contains('icon-button');
+        const hasLucideIcon = Boolean(element.querySelector('[data-lucide]'));
+        const hasSvg = Boolean(element.querySelector('svg'));
+
+        const textWithoutIcons = Array.from(element.childNodes)
+            .filter((node) => node.nodeType === Node.TEXT_NODE)
+            .map((node) => node.textContent.trim())
+            .join('');
+
+        return (hasIconClass || hasLucideIcon || hasSvg) && !textWithoutIcons;
+    }
+
     function applyConfigValues() {
         const textNodes = document.querySelectorAll('[data-config]');
         const htmlNodes = document.querySelectorAll('[data-config-html]');
@@ -43,10 +58,16 @@
         const emailLinks = document.querySelectorAll('[data-email-link]');
         const currentYearNodes = document.querySelectorAll('[data-current-year]');
 
+        const companyName = getConfigValue('company.name') || 'TREEVO';
+        const phoneRaw = getConfigValue('contact.phoneRaw');
+        const phoneDisplay = getConfigValue('contact.phoneDisplay');
+        const phoneButtonText = getConfigValue('contact.phoneButtonText');
+        const email = getConfigValue('contact.email');
+
         textNodes.forEach((node) => {
             const value = getConfigValue(node.dataset.config);
 
-            if (value !== undefined && value !== null) {
+            if (value !== undefined && value !== null && value !== '') {
                 node.textContent = value;
             }
         });
@@ -54,49 +75,41 @@
         htmlNodes.forEach((node) => {
             const value = getConfigValue(node.dataset.configHtml);
 
-            if (value !== undefined && value !== null) {
+            if (value !== undefined && value !== null && value !== '') {
                 node.innerHTML = value;
             }
         });
 
         phoneLinks.forEach((link) => {
-            const phoneRaw = getConfigValue('contact.phoneRaw');
-            const phoneDisplay = getConfigValue('contact.phoneDisplay');
-            const phoneButtonText = getConfigValue('contact.phoneButtonText');
-
-            const isIconOnlyLink =
-                link.classList.contains('icon-button') ||
-                link.querySelector('[data-lucide]') ||
-                link.querySelector('svg');
+            const isIconOnly = isIconOnlyElement(link);
 
             if (phoneRaw) {
                 link.setAttribute('href', `tel:${phoneRaw}`);
             }
 
-            if (!isIconOnlyLink && !link.textContent.trim()) {
+            if (!isIconOnly && !link.textContent.trim()) {
                 link.textContent = phoneDisplay || phoneButtonText || 'Call Now';
             }
 
-            link.setAttribute('aria-label', `Call ${phoneDisplay || phoneRaw || 'TREEVO'}`);
+            link.setAttribute('aria-label', `Call ${companyName}`);
         });
 
         emailLinks.forEach((link) => {
-            const email = getConfigValue('contact.email');
-
-            const isIconOnlyLink =
-                link.classList.contains('icon-button') ||
-                link.querySelector('[data-lucide]') ||
-                link.querySelector('svg');
+            const isIconOnly = isIconOnlyElement(link);
 
             if (email) {
                 link.setAttribute('href', `mailto:${email}`);
             }
 
-            if (!isIconOnlyLink && !link.textContent.trim()) {
-                link.textContent = email || 'Email TREEVO';
+            if (!isIconOnly && !link.textContent.trim()) {
+                link.textContent = email;
             }
 
-            link.setAttribute('aria-label', `Email ${email || 'TREEVO'}`);
+            link.setAttribute('aria-label', `Email ${companyName}`);
+        });
+
+        currentYearNodes.forEach((node) => {
+            node.textContent = new Date().getFullYear();
         });
     }
 
