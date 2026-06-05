@@ -31,13 +31,13 @@
 .service-hero--tree-removal {
     background:
         var(--gradient-hero),
-        url("../assets/images/tree-removal-hero.jpg") center / cover no-repeat;
+        url("../assets/images/stump-grinding.jpg") center / cover no-repeat;
 }
 
 .service-hero--emergency {
     background:
         var(--gradient-hero),
-        url("../assets/images/emergency-tree-removal.jpg") center / cover no-repeat;
+        url("../assets/images/arborist-worker.jpg") center / cover no-repeat;
 }
 
 .service-hero--trimming {
@@ -55,7 +55,7 @@
 .service-hero--land {
     background:
         var(--gradient-hero),
-        url("../assets/images/land-clearing.jpg") center / cover no-repeat;
+        url("../assets/images/tree-risk-assessment-card.jpg") center / cover no-repeat;
 }
 
 .service-hero--risk {
