@@ -688,3 +688,34 @@
         min-height: 240px;
     }
 }
+
+/* HERO META — ONE ROW */
+
+.page-hero .hero__meta,
+.service-hero .hero__meta,
+.hero .hero__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+}
+
+.page-hero .hero__meta::-webkit-scrollbar,
+.service-hero .hero__meta::-webkit-scrollbar,
+.hero .hero__meta::-webkit-scrollbar {
+    display: none;
+}
+
+.page-hero .hero__meta-item,
+.service-hero .hero__meta-item,
+.hero .hero__meta-item {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+}

@@ -1071,8 +1071,15 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    min-height: 34px;
+    padding: 6px 11px;
+    border: 1px solid rgba(246, 228, 207, 0.16);
+    border-radius: var(--radius-pill);
     color: rgba(251, 247, 243, 0.78);
     font-size: 0.88rem;
+    background: rgba(16, 16, 6, 0.32);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 .hero__meta-item svg {

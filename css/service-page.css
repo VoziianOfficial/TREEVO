@@ -610,10 +610,11 @@
     flex: 0 0 auto;
     width: auto;
     white-space: nowrap;
-    padding: 7px 12px;
+    min-height: 34px;
+    padding: 6px 11px;
     border: 1px solid rgba(246, 228, 207, 0.16);
     border-radius: var(--radius-pill);
-    background: rgba(16, 16, 6, 0.34);
+    background: rgba(16, 16, 6, 0.32);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     transition:

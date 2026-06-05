@@ -80,7 +80,7 @@
     border-radius: 42% 58% 46% 54% / 55% 44% 56% 45%;
     background:
         linear-gradient(180deg, rgba(16, 16, 6, 0.04), rgba(16, 16, 6, 0.48)),
-        url("../assets/images/arborist-worker.jpg") center / cover no-repeat;
+        url("../assets/images/property-residential.jpg") center / cover no-repeat;
     box-shadow: var(--shadow-card);
 }
 
