@@ -545,22 +545,7 @@
 }
 
 
-/* ALL PAGE / SERVICE HERO FIX */
 
-/* убираем inline background вида element.style */
-.page-hero,
-.service-hero {
-    background:
-        var(--gradient-hero),
-        var(--color-forest-black) !important;
-}
-
-/* если на каких-то service hero остались отдельные классы */
-.service-hero[class*="service-hero--"] {
-    background:
-        var(--gradient-hero),
-        var(--color-forest-black) !important;
-}
 
 /* даем тексту больше ширины */
 .page-hero .page-hero__content,
