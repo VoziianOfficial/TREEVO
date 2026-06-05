@@ -51,6 +51,101 @@
         return (hasIconClass || hasLucideIcon || hasSvg) && !textWithoutIcons;
     }
 
+    function replaceAllText(value, replacements) {
+        if (!value || typeof value !== 'string') return value;
+
+        return replacements.reduce((text, item) => {
+            if (!item.from || item.to === undefined || item.to === null) return text;
+
+            return text.split(item.from).join(item.to);
+        }, value);
+    }
+
+    function replaceStaticTextEverywhere(replacements) {
+        const skipTags = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'PATH']);
+
+        const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode(node) {
+                    const parent = node.parentElement;
+
+                    if (!parent || skipTags.has(parent.tagName)) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+
+                    if (!node.nodeValue.trim()) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }
+        );
+
+        const textNodes = [];
+
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
+        textNodes.forEach((node) => {
+            node.nodeValue = replaceAllText(node.nodeValue, replacements);
+        });
+
+        document.querySelectorAll('[aria-label], [title], [alt], [placeholder], meta[content]').forEach((element) => {
+            ['aria-label', 'title', 'alt', 'placeholder', 'content'].forEach((attribute) => {
+                if (!element.hasAttribute(attribute)) return;
+
+                element.setAttribute(attribute, replaceAllText(element.getAttribute(attribute), replacements));
+            });
+        });
+
+        if (document.title) {
+            document.title = replaceAllText(document.title, replacements);
+        }
+    }
+
+    function updatePlainPhoneAndEmailLinks() {
+        const phoneRaw = getConfigValue('contact.phoneRaw');
+        const phoneDisplay = getConfigValue('contact.phoneDisplay');
+        const email = getConfigValue('contact.email');
+        const companyName = getConfigValue('company.name') || 'TREEVO';
+
+        if (phoneRaw) {
+            document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+                link.setAttribute('href', `tel:${phoneRaw}`);
+
+                if (!link.hasAttribute('data-phone-link')) {
+                    link.setAttribute('data-phone-link', '');
+                }
+
+                link.setAttribute('aria-label', `Call ${companyName}`);
+            });
+        }
+
+        if (email) {
+            document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+                link.setAttribute('href', `mailto:${email}`);
+
+                if (!link.hasAttribute('data-email-link')) {
+                    link.setAttribute('data-email-link', '');
+                }
+
+                link.setAttribute('aria-label', `Email ${companyName}`);
+            });
+        }
+
+        document.querySelectorAll('[data-phone-display]').forEach((node) => {
+            node.textContent = phoneDisplay || phoneRaw || '';
+        });
+
+        document.querySelectorAll('[data-email-display]').forEach((node) => {
+            node.textContent = email || '';
+        });
+    }
+
     function applyConfigValues() {
         const textNodes = document.querySelectorAll('[data-config]');
         const htmlNodes = document.querySelectorAll('[data-config-html]');
@@ -59,10 +154,15 @@
         const currentYearNodes = document.querySelectorAll('[data-current-year]');
 
         const companyName = getConfigValue('company.name') || 'TREEVO';
+        const companyId = getConfigValue('company.companyId');
+        const companyAddress = getConfigValue('company.address');
+        const serviceArea = getConfigValue('company.serviceArea');
+
         const phoneRaw = getConfigValue('contact.phoneRaw');
         const phoneDisplay = getConfigValue('contact.phoneDisplay');
         const phoneButtonText = getConfigValue('contact.phoneButtonText');
         const email = getConfigValue('contact.email');
+        const supportHours = getConfigValue('contact.supportHours');
 
         textNodes.forEach((node) => {
             const value = getConfigValue(node.dataset.config);
@@ -87,7 +187,9 @@
                 link.setAttribute('href', `tel:${phoneRaw}`);
             }
 
-            if (!isIconOnly && !link.textContent.trim()) {
+            const hasConfigChild = Boolean(link.querySelector('[data-config]'));
+
+            if (!isIconOnly && !hasConfigChild && !link.textContent.trim()) {
                 link.textContent = phoneDisplay || phoneButtonText || 'Call Now';
             }
 
@@ -101,7 +203,9 @@
                 link.setAttribute('href', `mailto:${email}`);
             }
 
-            if (!isIconOnly && !link.textContent.trim()) {
+            const hasConfigChild = Boolean(link.querySelector('[data-config]'));
+
+            if (!isIconOnly && !hasConfigChild && !link.textContent.trim()) {
                 link.textContent = email;
             }
 
@@ -111,6 +215,43 @@
         currentYearNodes.forEach((node) => {
             node.textContent = new Date().getFullYear();
         });
+
+        updatePlainPhoneAndEmailLinks();
+
+        replaceStaticTextEverywhere([
+            {
+                from: 'TREEVO',
+                to: companyName
+            },
+            {
+                from: 'TRV-TC-4827',
+                to: companyId
+            },
+            {
+                from: '123 Greenwood Drive, Austin, TX 78701, USA',
+                to: companyAddress
+            },
+            {
+                from: 'USA tree care provider comparison platform',
+                to: serviceArea
+            },
+            {
+                from: 'hello@treevocompare.com',
+                to: email
+            },
+            {
+                from: '+18885550148',
+                to: phoneRaw
+            },
+            {
+                from: '(888) 555-0148',
+                to: phoneDisplay
+            },
+            {
+                from: 'Mon–Fri, 8:00 AM–7:00 PM',
+                to: supportHours
+            }
+        ]);
     }
 
     function initLucideIcons() {
