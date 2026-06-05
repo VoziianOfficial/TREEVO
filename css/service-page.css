@@ -38,7 +38,7 @@
 .service-hero--trimming {
   background:
     var(--gradient-hero),
-    url("../assets/images/tree-trimming.jpg") center / cover no-repeat;
+    url("../assets/images/contact-hero.jpg") center / cover no-repeat;
 }
 
 .service-hero--stump {

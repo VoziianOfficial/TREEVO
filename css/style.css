@@ -1679,11 +1679,7 @@ a {
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;
 }
-.hero,
-.page-hero {
-  overflow: hidden;
-  clip-path: ellipse(170% 100% at 50% 0%);
-}
+
 
 html,
 body {
