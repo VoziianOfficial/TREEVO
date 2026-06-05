@@ -719,3 +719,34 @@
     width: auto;
     white-space: nowrap;
 }
+
+/* SERVICES HERO — MORE WIDTH FOR META BADGES */
+
+.services-hero .page-hero__content {
+    width: min(100%, 1040px);
+    max-width: 1040px;
+}
+
+.services-hero .page-hero__title {
+    max-width: 1040px;
+}
+
+.services-hero .page-hero__text {
+    max-width: 760px;
+}
+
+.services-hero .hero__meta {
+    width: min(100%, 980px);
+    max-width: 980px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow: visible;
+    padding-right: 10px;
+}
+
+.services-hero .hero__meta-item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}

@@ -1078,3 +1078,112 @@
         line-height: 1.55;
     }
 }
+
+/* QUOTE FACTORS — PHOTO BACKGROUND WITH BLACK GRADIENT */
+
+.quote-factors {
+    position: relative;
+    color: var(--color-white-soft);
+    background:
+        linear-gradient(90deg,
+            rgba(16, 16, 6, 0.92) 0%,
+            rgba(16, 16, 6, 0.78) 42%,
+            rgba(16, 16, 6, 0.58) 100%),
+        radial-gradient(circle at 85% 10%, rgba(214, 170, 88, 0.16), transparent 34%),
+        url("../assets/images/emergency-tree-removal.jpg") center / cover no-repeat !important;
+}
+
+/* heading readable on photo */
+.quote-factors .section-heading h2 {
+    color: var(--color-white-soft);
+}
+
+.quote-factors .section-heading p {
+    color: rgba(251, 247, 243, 0.76);
+}
+
+.quote-factors .section-kicker {
+    color: var(--color-leaf-light);
+}
+
+.quote-factors .section-kicker::before,
+.quote-factors .section-kicker::after {
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+/* lines/cards readable on dark photo */
+.quote-factors__grid {
+    border-top-color: rgba(246, 228, 207, 0.2);
+}
+
+.quote-factor {
+    border-bottom-color: rgba(246, 228, 207, 0.18);
+}
+
+.quote-factor h3 {
+    color: var(--color-white-soft);
+}
+
+.quote-factor p {
+    color: rgba(251, 247, 243, 0.7);
+}
+
+.quote-factor__icon {
+    color: var(--color-gold-light);
+}
+
+/* QUOTE FACTORS — BRIGHTER WHITE TEXT */
+
+.quote-factors .section-kicker {
+    color: #E8C77D !important;
+}
+
+.quote-factors .section-heading h2 {
+    color: #FFFFFF !important;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.42);
+}
+
+.quote-factors .section-heading p {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-weight: 600;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.36);
+}
+
+.quote-factors .quote-factor h3 {
+    color: #FFFFFF !important;
+    font-weight: 900;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.42);
+}
+
+.quote-factors .quote-factor p {
+    color: rgba(255, 255, 255, 0.84) !important;
+    font-weight: 600;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.32);
+}
+
+.quote-factors .quote-factor__icon {
+    color: #E8C77D !important;
+}
+
+.quote-factors {
+    background:
+        linear-gradient(90deg,
+            rgba(16, 16, 6, 0.96) 0%,
+            rgba(16, 16, 6, 0.86) 45%,
+            rgba(16, 16, 6, 0.72) 100%),
+        radial-gradient(circle at 85% 10%, rgba(214, 170, 88, 0.16), transparent 34%),
+        url("../assets/images/emergency-tree-removal.jpg") center / cover no-repeat !important;
+}
+
+/* MOBILE — HIDE ALL HERO META BLOCKS */
+
+@media (max-width: 560px) {
+
+    .hero__meta,
+    .home-hero__meta,
+    .page-hero .hero__meta,
+    .service-hero .hero__meta,
+    .contact-hero .hero__meta {
+        display: none !important;
+    }
+}

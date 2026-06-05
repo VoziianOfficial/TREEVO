@@ -1889,3 +1889,16 @@ body {
         flex: 0 0 auto;
     }
 }
+
+/* MOBILE — HIDE ALL HERO META BLOCKS */
+
+@media (max-width: 560px) {
+
+    .hero__meta,
+    .home-hero__meta,
+    .page-hero .hero__meta,
+    .service-hero .hero__meta,
+    .contact-hero .hero__meta {
+        display: none !important;
+    }
+}
