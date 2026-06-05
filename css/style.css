@@ -979,19 +979,7 @@ a {
     overflow: hidden;
 }
 
-.page-hero::after,
-.hero::after {
-    content: "";
-    position: absolute;
-    right: -5%;
-    bottom: -64px;
-    left: -5%;
-    z-index: 1;
-    height: 118px;
-    border-radius: 50% 50% 0 0 / 80% 80% 0 0;
-    background: var(--color-forest-black);
-    pointer-events: none;
-}
+
 
 .hero__inner,
 .page-hero__inner {
