@@ -314,7 +314,7 @@
 .before-after__side--after {
     background-image:
         linear-gradient(180deg, rgba(16, 16, 6, 0.08), rgba(16, 16, 6, 0.52)),
-        url("../assets/images/land-clearing.jpg");
+        url("../assets/images/land-clearing-card.jpg");
 }
 
 .before-after__label {

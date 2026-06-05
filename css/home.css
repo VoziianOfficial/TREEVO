@@ -1489,7 +1489,7 @@
     inset: 0;
     background:
         linear-gradient(180deg, rgba(16, 16, 6, 0.06), rgba(16, 16, 6, 0.42)),
-        url("../assets/images/forest-cta.jpg") center / cover no-repeat;
+        url("../assets/images/property-rental.jpg") center / cover no-repeat;
     transition: transform 0.65s var(--ease), filter 0.35s var(--ease);
 }
 
