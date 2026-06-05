@@ -543,3 +543,96 @@
         width: 100%;
     }
 }
+
+
+/* ALL PAGE / SERVICE HERO FIX */
+
+/* убираем inline background вида element.style */
+.page-hero,
+.service-hero {
+    background:
+        var(--gradient-hero),
+        var(--color-forest-black) !important;
+}
+
+/* если на каких-то service hero остались отдельные классы */
+.service-hero[class*="service-hero--"] {
+    background:
+        var(--gradient-hero),
+        var(--color-forest-black) !important;
+}
+
+/* даем тексту больше ширины */
+.page-hero .page-hero__content,
+.service-hero .page-hero__content {
+    width: min(100%, 980px);
+    max-width: 980px;
+}
+
+/* заголовку больше места, но сам заголовок чуть меньше */
+.page-hero .page-hero__title,
+.service-hero .page-hero__title {
+    width: 100%;
+    max-width: 980px;
+    font-size: clamp(2.7rem, 5.4vw, 5.35rem);
+    line-height: 0.96;
+}
+
+/* текст под заголовком тоже чуть шире */
+.page-hero .page-hero__text,
+.service-hero .page-hero__text {
+    max-width: 760px;
+}
+
+/* meta карточки в одну строку */
+.page-hero .hero__meta,
+.service-hero .hero__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: max-content;
+    max-width: 100%;
+    margin-top: 28px;
+    overflow-x: auto;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+}
+
+.page-hero .hero__meta::-webkit-scrollbar,
+.service-hero .hero__meta::-webkit-scrollbar {
+    display: none;
+}
+
+.page-hero .hero__meta-item,
+.service-hero .hero__meta-item {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+    padding: 7px 12px;
+    border: 1px solid rgba(246, 228, 207, 0.16);
+    border-radius: var(--radius-pill);
+    background: rgba(16, 16, 6, 0.34);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition:
+        transform 0.25s var(--ease),
+        color 0.25s var(--ease),
+        border-color 0.25s var(--ease),
+        background 0.25s var(--ease);
+}
+
+.page-hero .hero__meta-item:hover,
+.service-hero .hero__meta-item:hover {
+    color: var(--color-white);
+    border-color: rgba(214, 170, 88, 0.58);
+    background:
+        linear-gradient(135deg, rgba(79, 143, 77, 0.34), rgba(214, 170, 88, 0.14));
+    transform: translateY(-2px);
+}
+
+.page-hero .hero__meta-item:hover svg,
+.service-hero .hero__meta-item:hover svg {
+    color: var(--color-gold-light);
+}
