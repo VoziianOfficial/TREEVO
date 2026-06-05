@@ -23,18 +23,7 @@
     overflow: hidden;
 }
 
-.legal-hero::after {
-    content: "";
-    position: absolute;
-    right: -5%;
-    bottom: -64px;
-    left: -5%;
-    z-index: 1;
-    height: 118px;
-    border-radius: 50% 50% 0 0 / 80% 80% 0 0;
-    background: var(--color-forest-black);
-    pointer-events: none;
-}
+
 
 .legal-hero__inner {
     position: relative;
@@ -539,4 +528,15 @@
     .legal-cta__actions .btn {
         width: 100%;
     }
+}
+
+/* LEGAL HERO — BACKGROUND PHOTO */
+
+.legal-hero {
+    position: relative;
+    color: var(--color-white-soft);
+    background:
+        var(--gradient-hero),
+        url("../assets/images/cut-wood-rings.jpg") center / cover no-repeat;
+    overflow: hidden;
 }
