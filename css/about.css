@@ -263,7 +263,7 @@
     border-radius: 34px;
     background:
         linear-gradient(180deg, rgba(16, 16, 6, 0.04), rgba(16, 16, 6, 0.52)),
-        url("../assets/images/tree-risk-assessment.jpg") center / cover no-repeat;
+        url("../assets/images/tree-risk-assessment-card.jpg") center / cover no-repeat;
     box-shadow: var(--shadow-card);
 }
 
